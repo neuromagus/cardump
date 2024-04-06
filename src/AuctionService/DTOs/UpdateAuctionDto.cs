@@ -1,4 +1,4 @@
-﻿namespace AuctionServic.DTOs;
+﻿namespace AuctionService.DTOs;
 
 public class UpdateAuctionDto
 {

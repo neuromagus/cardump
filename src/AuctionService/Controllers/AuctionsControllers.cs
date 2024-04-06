@@ -1,4 +1,4 @@
-﻿using AuctionServic.DTOs;
+using AuctionService.DTOs;
 using AuctionService.Data;
 using AuctionService.DTOs;
 using AuctionService.Entities;
@@ -50,7 +50,8 @@ public class AuctionsControllers(AuctionDbContext context, IMapper mapper) : Con
         var result = await _context.SaveChangesAsync() > 0;
 
         return !result ? BadRequest("Could not save changes to database") 
-            : CreatedAtAction(nameof(GetAuctionById), new {auction.Id}, _mapper.Map<AuctionDto>(auction));
+            : CreatedAtAction(nameof(GetAuctionById), new {auction.Id}, 
+                                     _mapper.Map<AuctionDto>(auction));
     }
 
     [HttpPut("{id}")]
