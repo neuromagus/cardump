@@ -6,6 +6,7 @@ services:
     ports:
       - 5432:5432
     volumes:
-      - pgdata:/home/master/code/docker_data/postgres
+      - pgdata:/var/lib/postgresql/data
+
 volumes:
   pgdata:
