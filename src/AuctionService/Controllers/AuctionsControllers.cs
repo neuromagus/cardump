@@ -72,4 +72,20 @@ public class AuctionsControllers(AuctionDbContext context, IMapper mapper) : Con
 
         return result ? Ok() : BadRequest("Problem saving changes");
     }
+    
+    // this crap not really need for this architecture, but we realize CRUD, full fu crud...
+    [HttpDelete("{id}")]
+    public async Task<ActionResult> DeleteAuction(Guid id)
+    {
+        var auction = await _context.Auctions.FindAsync(id);
+
+        if (auction == null) return NotFound();
+
+        // TODO: check seller == user name
+        _context.Auctions.Remove(auction);
+
+        var result = await _context.SaveChangesAsync() > 0;
+
+        return result ? Ok() : BadRequest("could not update DB");
+    }
 }
