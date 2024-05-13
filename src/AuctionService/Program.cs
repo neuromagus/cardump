@@ -1,4 +1,5 @@
 using AuctionService.Data;
+using AuctionService.Consumers;
 using MassTransit;
 using Microsoft.EntityFrameworkCore;
 
@@ -19,9 +20,14 @@ builder.Services.AddMassTransit(x =>
         o.UsePostgres();
         o.UseBusOutbox();
     });
+    
+    // this is example for fault queues 
+    x.AddConsumersFromNamespaceContaining<AuctionCreatedFaultConsumer>();
+    
+    x.SetEndpointNameFormatter(new KebabCaseEndpointNameFormatter("auction", false));
 
     x.UsingRabbitMq((context, cfg) => 
-    {
+    {        
         cfg.ConfigureEndpoints(context);
     });
 });
