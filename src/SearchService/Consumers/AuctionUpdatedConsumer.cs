@@ -4,7 +4,7 @@ using MassTransit;
 using MongoDB.Entities;
 using SearchService.Models;
 
-namespace SearchService;
+namespace SearchService.Consumers;
 
 public class AuctionUpdatedConsumer(IMapper mapper) : IConsumer<AuctionUpdated>
 {
@@ -17,13 +17,13 @@ public class AuctionUpdatedConsumer(IMapper mapper) : IConsumer<AuctionUpdated>
         var result = await DB.Update<Item>()
             .Match(a => a.ID == context.Message.Id)
             .ModifyOnly(x => new
-                        {
-                            x.Color,
-                            x.Make,
-                            x.Model,
-                            x.Year,
-                            x.Mileage
-                        }, item)
+            {
+                x.Color,
+                x.Make,
+                x.Model,
+                x.Year,
+                x.Mileage
+            }, item)
             .ExecuteAsync();
 
         if (!result.IsAcknowledged)

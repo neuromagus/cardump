@@ -4,7 +4,7 @@ using MassTransit;
 using MongoDB.Entities;
 using SearchService.Models;
 
-namespace SearchService;
+namespace SearchService.Consumers;
 
 public class AuctionCreatedConsumer(IMapper mapper) : IConsumer<AuctionCreated>
 {
@@ -16,7 +16,7 @@ public class AuctionCreatedConsumer(IMapper mapper) : IConsumer<AuctionCreated>
 
         // example, how we consume fails queues
         if (item.Model == "Foo") throw new ArgumentException("Cannot sell cars with name of Foo");
-        
+
         await item.SaveAsync();
     }
 }
