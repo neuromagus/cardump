@@ -6,7 +6,7 @@ services:
     ports:
       - 5432:5432
     volumes:
-      - pgdata:/var/lib/postgresql/data
+      - /var/lib/postgresql/data
 
   mongo:
     image: mongo
@@ -16,7 +16,7 @@ services:
     ports:
       - 27017:27017
     volumes:
-      - mongodata:/var/lib/mongodb/data
+      - /var/lib/mongodb/data
 
   rabbitmq:
     image: rabbitmq:3.13.2-management-alpine
@@ -24,6 +24,19 @@ services:
       - 5672:5672
       - 15672:15672
 
-volumes:
-  pgdata:
-  mongodata:
+  auction-svc:
+    image: neuromagusdocker/auction-svc:latest
+    build:
+      context: .
+      dockerfile: src/AuctionService/Dockerfile
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://+:80
+      - RabbitMQ__Host=rabbitmq
+      - ConnectionStrings__DefaultConnection=Server=postgres:5432;User id=postgres;Password=pass;Database=auctions
+      - IdentityServiceUrl=http://identity-svc
+    ports:
+      - 7001:80
+    depends_on:
+      - postgres
+      - rabbitmq
