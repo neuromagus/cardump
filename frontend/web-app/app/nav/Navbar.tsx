@@ -1,4 +1,5 @@
 import { AiOutlineCar } from "react-icons/ai";
+import Search from "./Search";
 
 export default function Navbar() {
     return (
@@ -11,9 +12,7 @@ export default function Navbar() {
                     Cardump auctions
                 </div>
             </div>
-            <div>
-                Search
-            </div>
+            <Search />
             <div>
                 Login
             </div>
