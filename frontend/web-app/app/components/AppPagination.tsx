@@ -1,5 +1,3 @@
-"use client"
-
 import { Pagination } from "flowbite-react";
 
 type Props = {

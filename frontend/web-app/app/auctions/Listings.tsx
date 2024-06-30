@@ -40,7 +40,7 @@ export default function Listings() {
                 ))}
             </div>
             <div className="flex justify-center mt-4">
-                <AppPagination pageChanged={params.setPageNumber} currentPage={params.pageNumber}
+                <AppPagination pageChanged={setPageNumber} currentPage={params.pageNumber}
                      pageCount={data.pageCount} />
             </div>
         </>
