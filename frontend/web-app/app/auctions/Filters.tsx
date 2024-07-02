@@ -47,7 +47,7 @@ export default function Filters() {
     const filterBy = useParamsStore(state => state.filterBy)
 
     return (
-        <div className="flex justify-between items-center mb-4">
+        <div className="md:xl:flex justify-between items-center mb-4">
             <div>
                 <span className="uppercase text-sm text-gray-500 mr-2">Filter by</span>
                 <Button.Group>
@@ -56,9 +56,10 @@ export default function Filters() {
                                 onClick={() => setParams({filterBy: value})}
                                 color={`${filterBy === value ? "red" : "gray"}`}>
                             
-                            <Icon className="mr-3 h-4 w-4" /> 
-                            {label}
-                            
+                            <Icon className="mr-3 md:xl:h-4 md:xl:w-4 h-6 w-6" /> 
+                            <div className="hidden md:xl:block">
+                                {label}
+                            </div>
                         </Button>
                     ))}
                 </Button.Group>
@@ -71,9 +72,10 @@ export default function Filters() {
                                 onClick={() => setParams({orderBy: value})}
                                 color={`${orderBy === value ? "red" : "gray"}`}>
                             
-                            <Icon className="mr-3 h-4 w-4" /> 
-                            {label}
-                            
+                            <Icon className="mr-3 md:xl:h-4 md:xl:w-4 h-6 w-6" /> 
+                            <div className="hidden md:xl:block">
+                                {label}
+                            </div>
                         </Button>
                     ))}
                 </Button.Group>

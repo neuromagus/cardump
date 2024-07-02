@@ -17,7 +17,8 @@ export default function Search() {
     }
 
     return (
-        <div className="flex w-[50%] items-center border-2 rounded-full py-2 shadow-smal">
+        <div className="flex md:xl:w-[50%] m-3 md:xl:m-0 items-center border-2 
+                        rounded-full py-2 shadow-smal">
             <input type="text"
                    onKeyDown={(e: any) => {
                        if(e.key === "Enter") search()
