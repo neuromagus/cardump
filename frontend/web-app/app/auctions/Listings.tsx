@@ -8,13 +8,15 @@ import { getData } from "../actions/auctionAction"
 import { shallow } from "zustand/shallow"
 import { useParamsStore } from "@/hooks/useParamsStore"
 import qs from "query-string"
+import Filters from "./Filters"
 
 export default function Listings() {
     const [data, setData] = useState<PageResult<Auction>>()
     const params = useParamsStore(state => ({
         pageNumber: state.pageNumber,
         pageSize: state.pageSize,
-        searchTerm: state.searchTerm
+        searchTerm: state.searchTerm,
+        orderBy: state.orderBy
     }), shallow)
 
     const setParams = useParamsStore(state => state.setParams)
@@ -34,6 +36,7 @@ export default function Listings() {
 
     return (
         <>
+            <Filters />
             <div className="grid grid-cols-4 gap-6">
                 {data.results.map(auction => (
                     <AuctionCard auction={auction} key={auction.id} />
