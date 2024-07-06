@@ -14,7 +14,13 @@ export const authOptions: NextAuthOptions = {
             authorization: { params: { scope: "openid profile auctionApp" } },
             idToken: true
         })
-    ]
+    ],
+    callbacks: {
+        async jwt({token, profile, account, user}) {
+            console.log({token, profile, account, user})
+            return token
+        }
+    }
 }
 
 const handler = NextAuth(authOptions)
