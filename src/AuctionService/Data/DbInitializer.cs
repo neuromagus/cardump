@@ -38,7 +38,7 @@ public class DbInitializer
                     Color = "White",
                     Mileage = 50000,
                     Year = 2020,
-                    ImageUrl = "https://images.unsplash.com/photo-1626383494011-a97f8a940a05"
+                    ImageUrl = "https://images.unsplash.com/photo-1626383494011-a97f8a940a05?w=1280"
                 }
             },
             // 2 Bugatti Veyron
@@ -55,7 +55,7 @@ public class DbInitializer
                     Color = "Black",
                     Mileage = 15035,
                     Year = 2018,
-                    ImageUrl = "https://images.unsplash.com/photo-1596809011210-34f77e175150"
+                    ImageUrl = "https://images.unsplash.com/photo-1596809011210-34f77e175150?w=1280"
                 }
             },
             // 3 Ford mustang
@@ -71,7 +71,7 @@ public class DbInitializer
                     Color = "Blue",
                     Mileage = 65125,
                     Year = 2023,
-                    ImageUrl = "https://images.unsplash.com/photo-1709769320382-5c8bbb8c4933"
+                    ImageUrl = "https://images.unsplash.com/photo-1709769320382-5c8bbb8c4933?w=1280"
                 }
             },
             // 4 Mercedes SLK
@@ -88,7 +88,7 @@ public class DbInitializer
                     Color = "Black",
                     Mileage = 15001,
                     Year = 2020,
-                    ImageUrl = "https://images.unsplash.com/photo-1688812656796-f4c3334e84b0"
+                    ImageUrl = "https://images.unsplash.com/photo-1688812656796-f4c3334e84b0?w=1280"
                 }
             },
             // 5 BMW X1
@@ -105,7 +105,7 @@ public class DbInitializer
                     Color = "Black",
                     Mileage = 90000,
                     Year = 2017,
-                    ImageUrl = "https://images.unsplash.com/photo-1523983388277-336a66bf9bcd"
+                    ImageUrl = "https://images.unsplash.com/photo-1523983388277-336a66bf9bcd?w=1280"
                 }
             },
             // 6 Ferrari spider
@@ -122,7 +122,7 @@ public class DbInitializer
                     Color = "Red",
                     Mileage = 50000,
                     Year = 2015,
-                    ImageUrl = "https://images.unsplash.com/photo-1524710800377-5cdd93fa491a"
+                    ImageUrl = "https://images.unsplash.com/photo-1524710800377-5cdd93fa491a?w=1280"
                 }
             },
             // 7 Ferrari F-430
@@ -139,7 +139,7 @@ public class DbInitializer
                     Color = "Red",
                     Mileage = 5000,
                     Year = 2022,
-                    ImageUrl = "https://images.unsplash.com/photo-1583121274602-3e2820c69888"
+                    ImageUrl = "https://images.unsplash.com/photo-1583121274602-3e2820c69888?w=1280"
                 }
             },
             // 8 Audi R8
@@ -155,7 +155,7 @@ public class DbInitializer
                     Color = "Silver",
                     Mileage = 10050,
                     Year = 2021,
-                    ImageUrl = "https://images.unsplash.com/photo-1603584173870-7f23fdae1b7a"
+                    ImageUrl = "https://images.unsplash.com/photo-1603584173870-7f23fdae1b7a?w=1280"
                 }
             },
             // 9 Audi TT
@@ -172,7 +172,7 @@ public class DbInitializer
                     Color = "White",
                     Mileage = 25400,
                     Year = 2020,
-                    ImageUrl = "https://images.unsplash.com/photo-1617195920791-e42b4d1e559a"
+                    ImageUrl = "https://images.unsplash.com/photo-1617195920791-e42b4d1e559a?w=1280"
                 }
             },
             // 10 Ford Model T
@@ -189,7 +189,7 @@ public class DbInitializer
                     Color = "Green",
                     Mileage = 150150,
                     Year = 1938,
-                    ImageUrl = "https://images.unsplash.com/photo-1563137391-0030ae24bc35"
+                    ImageUrl = "https://images.unsplash.com/photo-1563137391-0030ae24bc35?w=1280"
                 }
             }
         };
