@@ -5,7 +5,7 @@ import { FieldValues, useForm } from "react-hook-form";
 import Input from "../components/Input";
 import { useEffect } from "react";
 import DateInput from "../components/DateInput";
-import { createAuction } from "../actions/auctionAction";
+import { createAuction } from "../actions/auctionActions";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
 
