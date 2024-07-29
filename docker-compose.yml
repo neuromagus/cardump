@@ -7,6 +7,11 @@ services:
       - 5432:5432
     volumes:
       - /var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 3
 
   mongo:
     image: mongo
@@ -17,12 +22,23 @@ services:
       - 27017:27017
     volumes:
       - /var/lib/mongodb/data
+    healthcheck:
+      test: echo 'db.runCommand("ping").ok' | mongosh localhost:27017/test --quiet
+      interval: 10s
+      timeout: 10s
+      retries: 5
+      start_period: 40s
 
   rabbitmq:
     image: rabbitmq:3.13.2-management-alpine
     ports:
       - 5672:5672
       - 15672:15672
+    healthcheck:
+      test: ["CMD", "rabbitmq-diagnostics", "-q", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
 
   auction-svc:
     image: neuromagusdocker/auction-svc:latest
@@ -32,14 +48,22 @@ services:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_URLS=http://+:80
+      - ASPNETCORE_URLS=http://+:7777
       - RabbitMQ__Host=rabbitmq
       - ConnectionStrings__DefaultConnection=Server=postgres:5432;User id=postgres;Password=pass;Database=auctions
       - IdentityServiceUrl=http://identity-svc
+      - Kestrel__Endpoints__Grpc__Protocols=Http2
+      - Kestrel__Endpoints__Grpc__Url=http://+:7777
+      - Kestrel__Endpoints__WebApi__Protocols=Http1
+      - Kestrel__Endpoints__WebApi__Url=http://+:80
     ports:
       - 7001:80
+      - 7777:7777
     depends_on:
-      - postgres
-      - rabbitmq
+      postgres:
+        condition: service_healthy
+      rabbitmq:
+        condition: service_healthy
 
   search-svc:
     image: neuromagusdocker/search-svc:latest
@@ -55,8 +79,10 @@ services:
     ports:
       - 7002:80
     depends_on:
-      - mongo
-      - rabbitmq
+      mongo:
+        condition: service_healthy
+      rabbitmq:
+        condition: service_healthy
 
   identity-svc:
     image: neuromagusdocker/identity-svc:latest
@@ -70,8 +96,9 @@ services:
     ports:
       - 5000:80
     depends_on:
-      - postgres
-
+      postgres:
+        condition: service_healthy
+    
   gateway-svc:
     image: neuromagusdocker/gateway-svc:latest
     build:
@@ -82,3 +109,27 @@ services:
       - ASPNETCORE_URLS=http://+:80
     ports:
       - 6001:80
+
+  bid-svc:
+    image: neuromagusdocker/bid-svc:latest
+    build:
+      context: .
+      dockerfile: src/BiddingService/Dockerfile
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://+:80
+      - RabbitMQ__Host=rabbitmq
+      - ConnectionStrings__BidDbConnection=mongodb://root:pass@mongo
+      - IdentityServiceUrl=http://identity-svc
+      - GrpcAuction=http://auction-svc:7777
+    ports:
+      - 7003:80
+    depends_on:
+      mongo:
+        condition: service_healthy
+      rabbitmq:
+        condition: service_healthy
+
+volumes:
+  postgres_data:
+  mongo_data:
