@@ -1,6 +1,6 @@
 import { numberWithComma } from "@/app/lib/numberWithComma"
 import { Bid } from "@/types"
-import { format } from "date-fns/format"
+import format from "date-fns/format"
 
 type Props = {
     bid: Bid

@@ -3,9 +3,7 @@
 import AuctionCard from "./AuctionCard"
 import AppPagination from "../components/AppPagination"
 import { useEffect, useState } from "react"
-import { Auction, PageResult } from "@/types"
 import { getData } from "../actions/auctionActions"
-import { shallow } from "zustand/shallow"
 import { useParamsStore } from "@/hooks/useParamsStore"
 import qs from "query-string"
 import Filters from "./Filters"
@@ -24,13 +22,13 @@ export default function Listings()
         filterBy: state.filterBy,
         seller: state.seller,
         winner: state.winner
-    }), shallow)
+    }))
 
     const data = useAuctionStore( state => ({
         auctions: state.auctions,
         pageCount: state.pageCount,
         totalCount: state.totalCount
-    }), shallow)
+    }))
 
     const setData = useAuctionStore(state => state.setData)
     const setParams = useParamsStore(state => state.setParams)
@@ -48,7 +46,7 @@ export default function Listings()
             setData(data)
             setLoading(false)
         })
-    }, [url])
+    }, [url, setData])
 
     if (loading) return <h3>Loading...</h3>
 
