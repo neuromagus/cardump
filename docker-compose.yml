@@ -7,6 +7,8 @@ services:
       - 5432:5432
     volumes:
       - postgres_data:/var/lib/postgresql/data
+    networks:
+      cardump:
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U postgres"]
       interval: 5s
@@ -18,6 +20,8 @@ services:
     environment:
       - MONGO_INITDB_ROOT_USERNAME=root
       - MONGO_INITDB_ROOT_PASSWORD=pass
+    networks:
+      cardump:
     ports:
       - 27017:27017
     volumes:
@@ -31,6 +35,8 @@ services:
 
   rabbitmq:
     image: rabbitmq:3.13.2-management-alpine
+    networks:
+      cardump:
     ports:
       - 5672:5672
       - 15672:15672
@@ -56,6 +62,8 @@ services:
       - Kestrel__Endpoints__Grpc__Url=http://+:7777
       - Kestrel__Endpoints__WebApi__Protocols=Http1
       - Kestrel__Endpoints__WebApi__Url=http://+:80
+    networks:
+      cardump:
     ports:
       - 7001:80
       - 7777:7777
@@ -76,6 +84,8 @@ services:
       - RabbitMQ__Host=rabbitmq
       - ConnectionStrings__MongoDbConnection=mongodb://root:pass@mongo
       - AuctionServiceUrl=http://auction-svc
+    networks:
+      cardump:
     ports:
       - 7002:80
     depends_on:
@@ -92,9 +102,12 @@ services:
     environment:
       - ASPNETCORE_ENVIRONMENT=Docker
       - ASPNETCORE_URLS=http://+:80
+      - ClientApp=http://cardump.techdev.pro
       - ConnectionStrings__DefaultConnection=Server=postgres:5432;User id=postgres;Password=pass;Database=identity
-    ports:
-      - 5000:80
+      - VIRTUAL_HOST=id.techdev.pro
+    networks:
+      cardump:
+        ipv4_address: 10.10.0.100
     depends_on:
       postgres:
         condition: service_healthy
@@ -107,8 +120,10 @@ services:
     environment:
       - ASPNETCORE_ENVIRONMENT=Docker
       - ASPNETCORE_URLS=http://+:80
-    ports:
-      - 6001:80
+      - ClientApp=http://cardump.techdev.pro
+      - VIRTUAL_HOST=api.techdev.pro
+    networks:
+      cardump:
 
   bid-svc:
     image: neuromagusdocker/bid-svc:latest
@@ -122,6 +137,8 @@ services:
       - ConnectionStrings__BidDbConnection=mongodb://root:pass@mongo
       - IdentityServiceUrl=http://identity-svc
       - GrpcAuction=http://auction-svc:7777
+    networks:
+      cardump:
     ports:
       - 7003:80
     depends_on:
@@ -139,6 +156,8 @@ services:
       - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_URLS=http://+:80
       - RabbitMQ__Host=rabbitmq
+    networks:
+      cardump:
     ports:
       - 7004:80
     depends_on:
@@ -152,15 +171,33 @@ services:
       dockerfile: frontend/web-app/Dockerfile
     volumes:
       - web_data:/var/lib/web/data
-    ports:
-      - 3000:3000
+    networks:
+      cardump:
+    extra_hosts:
+      - id.techdev.pro:10.10.0.100
     environment:
       - NEXTAUTH_SECRET=somethingreallysecret
-      - NEXTAUTH_URL=http://web-app
+      - NEXTAUTH_URL=http://cardump.techdev.pro
       - NEXT_PUBLIC_NOTIFY_URL=http://gateway-svc/notifications
-
       - API_URL=http://gateway-svc/
-      - ID_URL=http://identity-svc
+      - ID_URL=http://id.techdev.pro
+      - VIRTUAL_HOST=cardump.techdev.pro
+      - VIRTUAL_PORT=3000
+      
+  nginx-proxy:
+    image: nginxproxy/nginx-proxy
+    networks:
+      cardump:
+    ports:
+      - "80:80"
+    volumes:
+      - /var/run/docker.sock:/tmp/docker.sock:ro    
+
+networks:
+  cardump:
+    ipam:
+      config:
+        - subnet: 10.10.0.0/24
 
 volumes:
   web_data:
