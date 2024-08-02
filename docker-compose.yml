@@ -120,7 +120,7 @@ services:
     environment:
       - ASPNETCORE_ENVIRONMENT=Docker
       - ASPNETCORE_URLS=http://+:80
-      - ClientApp=http://cardump.techdev.pro
+      - ClientApp=https://cardump.techdev.pro
       - VIRTUAL_HOST=api.techdev.pro
     networks:
       cardump:
