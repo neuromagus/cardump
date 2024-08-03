@@ -1,2 +1,14 @@
-don't forget to create in webapp .env.local
-with NEXTAUTH_SECRET and NEXTAUTH_URL, dude!..
+### Cardump (cars auction)
+You can see the work here - cardump.techdev.pro
+
+Used technologies:
+- RabbitMQ for Service bus communications
+- client app using NextJS
+- SignalR
+- gPRC
+- Identity server
+- Docker
+- Nginx-proxy
+- Postgres/MongoDB
+- .Net microservices
+- Publish to Docker Compose 
