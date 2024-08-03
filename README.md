@@ -1,14 +1,14 @@
 ### Cardump (cars auction)
-You can see the work here - cardump.techdev.pro
+You can see the work here - [https://cardump.techdev.pro](https://cardump.techdev.pro)
 
 Used technologies:
+- Dotnet microservices
+- Postgres/MongoDB
 - RabbitMQ for Service bus communications
-- client app using NextJS
+- Identity server
 - SignalR
 - gPRC
-- Identity server
+- NextJS for client app
 - Docker
 - Nginx-proxy
-- Postgres/MongoDB
-- .Net microservices
-- Publish to Docker Compose 
+- Publish to Docker Compose (or Kubernetes)
