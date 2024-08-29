@@ -24,7 +24,7 @@ public class DbInitializer
 
         var auctions = new List<Auction>()
         {
-            	    // 1 Ford GT
+            // 1 Ford GT
             new() {
                 Id = Guid.Parse("afbee524-5972-4075-8800-7d1f9d7b0a0c"),
                 Status = Status.Live,
@@ -190,6 +190,135 @@ public class DbInitializer
                     Mileage = 150150,
                     Year = 1938,
                     ImageUrl = "https://images.unsplash.com/photo-1563137391-0030ae24bc35?w=1280"
+                }
+            },
+            // 
+            new() {
+                Id = Guid.Parse("3659ac24-29dd-407a-81f5-ecfe6f924b91"),
+                Status = Status.Live,
+                ReservePrice = 10000,
+                Seller = "tom",
+                AuctionEnd = DateTime.UtcNow.AddDays(12),
+                Item = new Item
+                {
+                    Make = "Aston Martin",
+                    Model = "Convertible",
+                    Color = "White",
+                    Mileage = 150,
+                    Year = 2016,
+                    ImageUrl = "https://images.unsplash.com/photo-1469285994282-454ceb49e63c?&w=1280"
+                }
+            },
+            new() {
+                Id = Guid.Parse("3659ac24-29dd-407a-81f5-ecfe6f924b92"),
+                Status = Status.Live,
+                ReservePrice = 1000,
+                Seller = "tom",
+                AuctionEnd = DateTime.UtcNow.AddDays(18),
+                Item = new Item
+                {
+                    Make = "Volkswagen",
+                    Model = "Beetle",
+                    Color = "White",
+                    Mileage = 23100,
+                    Year = 2003,
+                    ImageUrl = "https://images.unsplash.com/photo-1490985830292-06e0fe60d725?w=1280"
+                }
+            },
+            new() {
+                Id = Guid.Parse("3659ac24-29dd-407a-81f5-ecfe6f924b93"),
+                Status = Status.Live,
+                ReservePrice = 12000,
+                Seller = "alice",
+                AuctionEnd = DateTime.UtcNow.AddDays(18),
+                Item = new Item
+                {
+                    Make = "Porche",
+                    Model = "911 Carrera",
+                    Color = "Yellow",
+                    Mileage = 11111,
+                    Year = 2016,
+                    ImageUrl = "https://images.unsplash.com/photo-1662123312343-db45a3324981?w=1280"
+                }
+            },
+            new() {
+                Id = Guid.Parse("3659ac24-29dd-407a-81f5-ecfe6f924b94"),
+                Status = Status.Live,
+                ReservePrice = 60000,
+                Seller = "alice",
+                AuctionEnd = DateTime.UtcNow.AddDays(7),
+                Item = new Item
+                {
+                    Make = "Toyota",
+                    Model = "Hydrogen concept",
+                    Color = "White",
+                    Mileage = 11111,
+                    Year = 2019,
+                    ImageUrl = "https://images.unsplash.com/photo-1555550252-fc3187f10240?&w=1280"
+                }
+            },
+            new() {
+                Id = Guid.Parse("3659ac24-29dd-407a-81f5-ecfe6f924b95"),
+                Status = Status.Live,
+                ReservePrice = 12000,
+                Seller = "tom",
+                AuctionEnd = DateTime.UtcNow.AddDays(11),
+                Item = new Item
+                {
+                    Make = "Toyota",
+                    Model = "Camry",
+                    Color = "Blue",
+                    Mileage = 2100,
+                    Year = 2020,
+                    ImageUrl = "https://images.unsplash.com/photo-1588440983028-d53e24fa96cc?w=1280"
+                }
+            },
+            new() {
+                Id = Guid.Parse("3659ac24-29dd-407a-81f5-ecfe6f924b96"),
+                Status = Status.Live,
+                ReservePrice = 20000,
+                Seller = "bob",
+                AuctionEnd = DateTime.UtcNow.AddDays(22),
+                Item = new Item
+                {
+                    Make = "Honda",
+                    Model = "Civic Type R",
+                    Color = "Red",
+                    Mileage = 100000,
+                    Year = 2022,
+                    ImageUrl = "https://images.unsplash.com/photo-1681392352631-354ed229191f?w=1280"
+                }
+            },
+            new() {
+                Id = Guid.Parse("3659ac24-29dd-407a-81f5-ecfe6f924b97"),
+                Status = Status.Live,
+                ReservePrice = 20000,
+                Seller = "tom",
+                AuctionEnd = DateTime.UtcNow.AddDays(15),
+                Item = new Item
+                {
+                    Make = "MiniCooper",
+                    Model = "Cabriolette",
+                    Color = "Black",
+                    Mileage = 51000,
+                    Year = 2018,
+                    ImageUrl = "https://images.unsplash.com/photo-1623703985638-d4530c062523?&w=1280"
+                }
+            },
+            new() {
+                Id = Guid.Parse("3659ac24-29dd-407a-81f5-ecfe6f924b98"),
+                Status = Status.Live,
+                ReservePrice = 20000,
+                Seller = "tom",
+                AuctionEnd = DateTime.UtcNow.AddDays(14),
+                Item = new Item
+                {
+                    Make = "Bugatti",
+                    Model = "Veyron",
+                    Color = "Green",
+                    Mileage = 42000,
+                    Year = 2014,
+                    ImageUrl = "https://images.unsplash.com/photo-1662240879431-79a572af18f7?&w=1280"
                 }
             }
         };

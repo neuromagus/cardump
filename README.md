@@ -5,10 +5,11 @@ Used technologies:
 - Dotnet microservices
 - Postgres/MongoDB
 - RabbitMQ for Service bus communications
-- Identity server
+- Duende Identity server
 - SignalR
 - gPRC
-- NextJS for client app
+- NextJS for client app with Tailwind
 - Docker
 - Nginx-proxy
+- Microsoft YARP
 - Publish to Docker Compose (or Kubernetes)
