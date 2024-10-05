@@ -4,7 +4,7 @@ You can see the work here - [https://cardump.techdev.pro](https://cardump.techde
 Used technologies:
 - Dotnet microservices
 - Postgres/MongoDB
-- RabbitMQ for Service bus communications
+- RabbitMQ
 - Duende Identity server
 - SignalR
 - gPRC
