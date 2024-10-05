@@ -8,7 +8,7 @@ Used technologies:
 - Duende Identity server
 - SignalR
 - gPRC
-- NextJS with Tailwind and Router
+- NextJS with Tailwind
 - Docker
 - Nginx-proxy
 - Gateway using Microsoft YARP
